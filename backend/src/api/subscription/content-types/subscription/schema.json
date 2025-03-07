@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscriptions",
+  "info": {
+    "singularName": "subscription",
+    "pluralName": "subscriptions",
+    "displayName": "Subscription",
+    "description": "User subscriptions to sites"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "canceled", "expired", "trial"],
+      "default": "active",
+      "required": true
+    },
+    "startDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "endDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "plan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subscription-plan.subscription-plan"
+    },
+    "site": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::site.site"
+    },
+    "subscriber": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "stripeSubscriptionId": {
+      "type": "string"
+    },
+    "stripeCustomerId": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "required": true
+    },
+    "renewalDate": {
+      "type": "datetime"
+    },
+    "canceledAt": {
+      "type": "datetime"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

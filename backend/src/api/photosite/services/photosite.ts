@@ -1,0 +1,5 @@
+/**
+ * photosite service
+ */
+
+export default () => ({});

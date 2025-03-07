@@ -1,0 +1,80 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "singularName": "transaction",
+    "pluralName": "transactions",
+    "displayName": "Transaction",
+    "description": "Payment transactions for media items or subscriptions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": ["subscription", "media_purchase"],
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "completed", "failed", "refunded"],
+      "default": "pending",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "required": true
+    },
+    "stripePaymentIntentId": {
+      "type": "string"
+    },
+    "stripeCustomerId": {
+      "type": "string"
+    },
+    "buyer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "seller": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "site": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::site.site"
+    },
+    "mediaItem": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::media-item.media-item"
+    },
+    "subscription": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subscription.subscription"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "completedAt": {
+      "type": "datetime"
+    },
+    "failedAt": {
+      "type": "datetime"
+    },
+    "refundedAt": {
+      "type": "datetime"
+    }
+  }
+} 

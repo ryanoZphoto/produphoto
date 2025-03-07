@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "media_items",
+  "info": {
+    "singularName": "media-item",
+    "pluralName": "media-items",
+    "displayName": "Media Item",
+    "description": "Photos and videos uploaded by users"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["image", "video"],
+      "required": true
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images", "videos"]
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "site": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::site.site",
+      "inversedBy": "mediaItems"
+    },
+    "collections": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::collection.collection",
+      "mappedBy": "mediaItems"
+    },
+    "price": {
+      "type": "decimal",
+      "min": 0
+    },
+    "forSale": {
+      "type": "boolean",
+      "default": false
+    },
+    "tags": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "views": {
+      "type": "integer",
+      "default": 0
+    },
+    "downloads": {
+      "type": "integer",
+      "default": 0
+    },
+    "likes": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+} 

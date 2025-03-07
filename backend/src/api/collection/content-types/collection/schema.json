@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collections",
+  "info": {
+    "singularName": "collection",
+    "pluralName": "collections",
+    "displayName": "Collection",
+    "description": "Groups of media items organized by the user"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "site": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::site.site",
+      "inversedBy": "collections"
+    },
+    "mediaItems": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::media-item.media-item",
+      "inversedBy": "collections"
+    },
+    "coverImage": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::media-item.media-item"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "isPublished": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+} 

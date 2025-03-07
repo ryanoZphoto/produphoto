@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sites",
+  "info": {
+    "singularName": "site",
+    "pluralName": "sites",
+    "displayName": "Site",
+    "description": "User-generated sites for showcasing photos and videos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "theme": {
+      "type": "string",
+      "default": "default"
+    },
+    "isPublished": {
+      "type": "boolean",
+      "default": false
+    },
+    "ageRestricted": {
+      "type": "boolean",
+      "default": false
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "sites"
+    },
+    "collections": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::collection.collection",
+      "mappedBy": "site"
+    },
+    "mediaItems": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-item.media-item",
+      "mappedBy": "site"
+    }
+  }
+} 
