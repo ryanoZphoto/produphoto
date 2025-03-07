@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.local
+
+# Build files
+.next/
+build/
+dist/
+
+# Logs
+*.log
+
+# Database files
+*.sqlite
+*.db
+
+# Temporary files
+.tmp/
