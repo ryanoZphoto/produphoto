@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sites",
+  "info": {
+    "singularName": "site",
+    "pluralName": "sites",
+    "displayName": "Site",
+    "description": "User created sites"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "theme": {
+      "type": "string",
+      "default": "default"
+    },
+    "isPublished": {
+      "type": "boolean",
+      "default": false
+    },
+    "ageRestricted": {
+      "type": "boolean",
+      "default": false
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "collections": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::collection.collection",
+      "mappedBy": "site"
+    },
+    "mediaItems": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-item.media-item",
+      "mappedBy": "site"
+    }
+  }
+} 

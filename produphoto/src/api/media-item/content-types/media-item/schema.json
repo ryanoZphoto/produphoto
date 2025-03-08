@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "media_items",
+  "info": {
+    "singularName": "media-item",
+    "pluralName": "media-items",
+    "displayName": "Media Item",
+    "description": "Photos and videos uploaded by users"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "mediaType": {
+      "type": "enumeration",
+      "enum": [
+        "image",
+        "video"
+      ],
+      "default": "image",
+      "required": true
+    },
+    "mediaFile": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "tags": {
+      "type": "json"
+    },
+    "isForSale": {
+      "type": "boolean",
+      "default": false
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "site": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::site.site",
+      "inversedBy": "mediaItems"
+    },
+    "collections": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::collection.collection",
+      "mappedBy": "mediaItems"
+    }
+  }
+} 
